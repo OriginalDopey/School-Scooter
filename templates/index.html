@@ -159,12 +159,14 @@
 
     function updateScore() {
         document.getElementById('score').textContent = score;
+        document.getElementById('geek-score').textContent = score;
     }
 
     function updateGeekStats() {
         document.getElementById('geek-speed').textContent = step;
         document.getElementById('geek-score').textContent = score;
         document.getElementById('geek-collisions').textContent = collisions;
+        document.getElementById('score').textContent = score;
     }
 
     function movePlayer(e) {
