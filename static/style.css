@@ -1,3 +1,22 @@
+/* Coin styles */
+.coin {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: gold;
+    border: 2px solid #ffb300;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(255,193,7,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.coin::after {
+    content: '💰';
+    font-size: 1.5em;
+    display: block;
+    text-align: center;
+}
 #hallway {
     position: relative;
     width: 440px;
