@@ -24,6 +24,35 @@
             <div class="coin" style="left: 360px; top: 220px;"></div>
         </div>
     </div>
+    let score = 0;
+
+    // Helper: get bounding box for collision
+    function getRect(el) {
+        return el.getBoundingClientRect();
+    }
+
+    function checkCoinCollision() {
+        const playerRect = getRect(player);
+        document.querySelectorAll('.coin').forEach(coin => {
+            const coinRect = getRect(coin);
+            // Simple collision check
+            if (
+                playerRect.left < coinRect.right &&
+                playerRect.right > coinRect.left &&
+                playerRect.top < coinRect.bottom &&
+                playerRect.bottom > coinRect.top
+            ) {
+                coin.style.display = 'none';
+                score++;
+                updateScore();
+            }
+        });
+    }
+
+    function updateScore() {
+        document.getElementById('score').textContent = score;
+    }
+
     <div id="instructions" style="max-width: 500px; margin: 2em auto; background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px; padding: 1em; font-size: 1.1em;">
         <h2>How to Play</h2>
         <ul>
@@ -49,9 +78,13 @@
             case 'A':
                 pos.x = Math.max(0, pos.x - step);
                 break;
+        checkCoinCollision();
             case 'ArrowRight':
             case 'd':
             case 'D':
+    <div id="scoreboard" style="max-width: 500px; margin: 2em auto; background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px; padding: 1em; font-size: 1.2em; text-align: center;">
+        <strong>Score:</strong> <span id="score">0</span>
+    </div>
                 pos.x = Math.min(400, pos.x + step);
                 break;
             case 'ArrowUp':
