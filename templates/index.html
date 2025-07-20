@@ -54,6 +54,7 @@
     <script>
     // Continuous/dynamic obstacle and coin generation
     const hallway = document.getElementById('hallway');
+    let step = 40;
     let speed = 2;
     function spawnElement(type) {
         const el = document.createElement('div');
@@ -105,7 +106,6 @@
     // School Scooter: Game Controls, Coin & Obstacle Collision, Teacher Cutscene, Geek Console
     const player = document.getElementById('player');
     let pos = { x: 200, y: 230 };
-    const step = 40;
     let score = 0;
     let gameOver = false;
     let collisions = 0;
