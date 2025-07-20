@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Scooter</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- PyScript CDN -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to School Scooter!</h1>
     <h1>🛴 School Scooter</h1>
     <div id="game-container">
         <!-- Hallway map -->
@@ -17,45 +18,55 @@
             <div id="player" style="left: 40px; top: 120px;"></div>
         </div>
     </div>
+    <div id="instructions" style="max-width: 500px; margin: 2em auto; background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px; padding: 1em; font-size: 1.1em;">
+        <h2>How to Play</h2>
+        <ul>
+            <li>Use <b>Arrow Keys</b> to move your scooter left, right, up, and down.</li>
+            <li>Try to avoid obstacles and collect coins!</li>
+            <li>More features coming soon...</li>
+        </ul>
+    </div>
     <div id="geek-console">
         <!-- Stuff for Geeks console placeholder -->
     </div>
-    <!-- PyScript Python code for MVP: player movement -->
-    <py-script>
-# School Scooter MVP: Player Movement
-# This code moves the player div left/right/up/down with arrow keys
-from js import document
-
-player = document.getElementById('player')
-pos = {'x': 40, 'y': 120}
-
-def move_player(event):
-    step = 20
-    if event.key == 'ArrowLeft':
-        pos['x'] = max(0, pos['x'] - step)
-    elif event.key == 'ArrowRight':
-        pos['x'] = min(400, pos['x'] + step)
-    elif event.key == 'ArrowUp':
-        pos['y'] = max(0, pos['y'] - step)
-    elif event.key == 'ArrowDown':
-        pos['y'] = min(240, pos['y'] + step)
-    player.style.left = f"{pos['x']}px"
-    player.style.top = f"{pos['y']}px"
-
-document.addEventListener('keydown', move_player)
-    </py-script>
-    </header>
-    <main>
-        <p>Get ready to ride and have fun!</p>
-        <button id="start-game">Start Game</button>
-    </main>
-    <footer>
-        <p>&copy; 2023 School Scooter. All rights reserved.</p>
-    </footer>
+    <!-- Game controls using JavaScript for reliability -->
     <script>
-        document.getElementById('start-game').addEventListener('click', function() {
-            // Logic to start the game goes here
-        });
+    // School Scooter: Common Game Controls (WASD + Arrow Keys)
+    const player = document.getElementById('player');
+    let pos = { x: 40, y: 120 };
+    const step = 20;
+
+    function movePlayer(e) {
+        switch (e.key) {
+            case 'ArrowLeft':
+            case 'a':
+            case 'A':
+                pos.x = Math.max(0, pos.x - step);
+                break;
+            case 'ArrowRight':
+            case 'd':
+            case 'D':
+                pos.x = Math.min(400, pos.x + step);
+                break;
+            case 'ArrowUp':
+            case 'w':
+            case 'W':
+                pos.y = Math.max(0, pos.y - step);
+                break;
+            case 'ArrowDown':
+            case 's':
+            case 'S':
+                pos.y = Math.min(240, pos.y + step);
+                break;
+        }
+        player.style.left = `${pos.x}px`;
+        player.style.top = `${pos.y}px`;
+    }
+    document.addEventListener('keydown', movePlayer);
     </script>
+<!-- ...existing code... -->
+
+print("Hello from PyScript!")
+    </py-script>
 </body>
 </html>
