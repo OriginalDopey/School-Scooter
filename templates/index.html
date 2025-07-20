@@ -122,11 +122,12 @@
                 playerRect.top < coinRect.bottom &&
                 playerRect.bottom > coinRect.top
             ) {
-                coin.remove();
-                score += 1;
+                if (coin.parentNode) coin.parentNode.removeChild(coin);
+                score = score + 1;
                 step += 2;
                 speed += 0.2;
-                updateScore();
+                document.getElementById('score').textContent = score;
+                document.getElementById('geek-score').textContent = score;
                 updateGeekStats();
             }
         });
