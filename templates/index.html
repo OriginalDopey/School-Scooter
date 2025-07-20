@@ -115,14 +115,13 @@
     function checkCoinCollision() {
         const playerRect = getRect(player);
         document.querySelectorAll('.coin').forEach(coin => {
-            // Use offset positions and sizes for more reliable collision
-            const px = pos.x, py = 230, pw = 40, ph = 40;
-            const cx = parseInt(coin.style.left), cy = parseInt(coin.style.top), cw = 32, ch = 32;
+            const playerRect = player.getBoundingClientRect();
+            const coinRect = coin.getBoundingClientRect();
             if (
-                px < cx + cw &&
-                px + pw > cx &&
-                py < cy + ch &&
-                py + ph > cy
+                playerRect.left < coinRect.right &&
+                playerRect.right > coinRect.left &&
+                playerRect.top < coinRect.bottom &&
+                playerRect.bottom > coinRect.top
             ) {
                 if (coin.parentNode) coin.parentNode.removeChild(coin);
                 score = score + 1;
