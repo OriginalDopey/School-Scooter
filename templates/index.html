@@ -24,9 +24,28 @@
             <div class="coin" style="left: 360px; top: 220px;"></div>
         </div>
     </div>
+    <div id="instructions" style="max-width: 500px; margin: 2em auto; background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px; padding: 1em; font-size: 1.1em;">
+        <h2>How to Play</h2>
+        <ul>
+            <li>Use <b>Arrow Keys</b> to move your scooter left, right, up, and down.</li>
+            <li>Try to avoid obstacles and collect coins!</li>
+            <li>More features coming soon...</li>
+        </ul>
+    </div>
+    <div id="geek-console">
+        <!-- Stuff for Geeks console placeholder -->
+    </div>
+    <div id="scoreboard" style="max-width: 500px; margin: 2em auto; background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px; padding: 1em; font-size: 1.2em; text-align: center;">
+        <strong>Score:</strong> <span id="score">0</span>
+    </div>
+    <script>
+    // School Scooter: Common Game Controls (WASD + Arrow Keys) + Coin & Obstacle Collision + Teacher Cutscene
+    const player = document.getElementById('player');
+    let pos = { x: 40, y: 120 };
+    const step = 20;
     let score = 0;
+    let gameOver = false;
 
-    // Helper: get bounding box for collision
     function getRect(el) {
         return el.getBoundingClientRect();
     }
@@ -35,7 +54,6 @@
         const playerRect = getRect(player);
         document.querySelectorAll('.coin').forEach(coin => {
             const coinRect = getRect(coin);
-            // Simple collision check
             if (
                 playerRect.left < coinRect.right &&
                 playerRect.right > coinRect.left &&
@@ -49,42 +67,38 @@
         });
     }
 
+    function checkObstacleCollision() {
+        const playerRect = getRect(player);
+        let hit = false;
+        document.querySelectorAll('.obstacle').forEach(obstacle => {
+            const obsRect = getRect(obstacle);
+            if (
+                playerRect.left < obsRect.right &&
+                playerRect.right > obsRect.left &&
+                playerRect.top < obsRect.bottom &&
+                playerRect.bottom > obsRect.top
+            ) {
+                hit = true;
+            }
+        });
+        return hit;
+    }
+
     function updateScore() {
         document.getElementById('score').textContent = score;
     }
 
-    <div id="instructions" style="max-width: 500px; margin: 2em auto; background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px; padding: 1em; font-size: 1.1em;">
-        <h2>How to Play</h2>
-        <ul>
-            <li>Use <b>Arrow Keys</b> to move your scooter left, right, up, and down.</li>
-            <li>Try to avoid obstacles and collect coins!</li>
-            <li>More features coming soon...</li>
-        </ul>
-    </div>
-    <div id="geek-console">
-        <!-- Stuff for Geeks console placeholder -->
-    </div>
-    <!-- Game controls using JavaScript for reliability -->
-    <script>
-    // School Scooter: Common Game Controls (WASD + Arrow Keys)
-    const player = document.getElementById('player');
-    let pos = { x: 40, y: 120 };
-    const step = 20;
-
     function movePlayer(e) {
+        if (gameOver) return;
         switch (e.key) {
             case 'ArrowLeft':
             case 'a':
             case 'A':
                 pos.x = Math.max(0, pos.x - step);
                 break;
-        checkCoinCollision();
             case 'ArrowRight':
             case 'd':
             case 'D':
-    <div id="scoreboard" style="max-width: 500px; margin: 2em auto; background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px; padding: 1em; font-size: 1.2em; text-align: center;">
-        <strong>Score:</strong> <span id="score">0</span>
-    </div>
                 pos.x = Math.min(400, pos.x + step);
                 break;
             case 'ArrowUp':
@@ -100,8 +114,45 @@
         }
         player.style.left = `${pos.x}px`;
         player.style.top = `${pos.y}px`;
+        checkCoinCollision();
+        if (checkObstacleCollision()) {
+            gameOver = true;
+            showTeacherCutscene();
+        }
     }
     document.addEventListener('keydown', movePlayer);
+
+    function showTeacherCutscene() {
+        const cutscene = document.createElement('div');
+        cutscene.id = 'cutscene';
+        cutscene.style.position = 'fixed';
+        cutscene.style.top = '0';
+        cutscene.style.left = '0';
+        cutscene.style.width = '100vw';
+        cutscene.style.height = '100vh';
+        cutscene.style.background = 'rgba(255,255,255,0.95)';
+        cutscene.style.display = 'flex';
+        cutscene.style.flexDirection = 'column';
+        cutscene.style.alignItems = 'center';
+        cutscene.style.justifyContent = 'center';
+        cutscene.style.zIndex = '999';
+        cutscene.innerHTML = `
+            <h1 style="color:#d32f2f;font-size:2.5em;">🚨 Teacher Caught You!</h1>
+            <p style="font-size:1.3em;">Yelling cutscene: "Hey! No scooters in the hallway!"</p>
+            <button id="restartBtn" style="font-size:1.1em;padding:0.5em 1.5em;">Restart</button>
+        `;
+        document.body.appendChild(cutscene);
+        document.getElementById('restartBtn').onclick = () => {
+            cutscene.remove();
+            pos = { x: 40, y: 120 };
+            player.style.left = `${pos.x}px`;
+            player.style.top = `${pos.y}px`;
+            score = 0;
+            updateScore();
+            document.querySelectorAll('.coin').forEach(coin => coin.style.display = '');
+            gameOver = false;
+        };
+    }
     </script>
 <!-- ...existing code... -->
 
