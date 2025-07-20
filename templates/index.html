@@ -32,19 +32,31 @@
             <li>More features coming soon...</li>
         </ul>
     </div>
-    <div id="geek-console">
-        <!-- Stuff for Geeks console placeholder -->
+    <button id="toggle-geek" style="margin: 1em auto; display: block; font-size: 1em;">Show Stuff for Geeks</button>
+    <div id="geek-console" style="display:none; max-width: 500px; margin: 1em auto; background: #e8f5e9; border: 1px solid #81c784; border-radius: 8px; padding: 1em; font-size: 1em;">
+        <h2>Stuff for Geeks</h2>
+        <div><b>Speed:</b> <span id="geek-speed">20</span> px/move</div>
+        <div><b>Score:</b> <span id="geek-score">0</span></div>
+        <div><b>Collisions:</b> <span id="geek-collisions">0</span></div>
+        <button id="pauseBtn" style="margin-top:1em;">Pause Game</button>
+        <div style="margin-top:1em; font-size:0.95em; color:#388e3c;">
+            <b>Code Explanation:</b> <br>
+            Player movement and collision logic are handled in JavaScript. <br>
+            Use WASD or arrow keys to move. Colliding with obstacles triggers a cutscene.
+        </div>
     </div>
     <div id="scoreboard" style="max-width: 500px; margin: 2em auto; background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px; padding: 1em; font-size: 1.2em; text-align: center;">
         <strong>Score:</strong> <span id="score">0</span>
     </div>
     <script>
-    // School Scooter: Common Game Controls (WASD + Arrow Keys) + Coin & Obstacle Collision + Teacher Cutscene
+    // School Scooter: Game Controls, Coin & Obstacle Collision, Teacher Cutscene, Geek Console
     const player = document.getElementById('player');
     let pos = { x: 40, y: 120 };
     const step = 20;
     let score = 0;
     let gameOver = false;
+    let collisions = 0;
+    let paused = false;
 
     function getRect(el) {
         return el.getBoundingClientRect();
@@ -63,6 +75,7 @@
                 coin.style.display = 'none';
                 score++;
                 updateScore();
+                updateGeekStats();
             }
         });
     }
@@ -88,8 +101,14 @@
         document.getElementById('score').textContent = score;
     }
 
+    function updateGeekStats() {
+        document.getElementById('geek-speed').textContent = step;
+        document.getElementById('geek-score').textContent = score;
+        document.getElementById('geek-collisions').textContent = collisions;
+    }
+
     function movePlayer(e) {
-        if (gameOver) return;
+        if (gameOver || paused) return;
         switch (e.key) {
             case 'ArrowLeft':
             case 'a':
@@ -117,6 +136,8 @@
         checkCoinCollision();
         if (checkObstacleCollision()) {
             gameOver = true;
+            collisions++;
+            updateGeekStats();
             showTeacherCutscene();
         }
     }
@@ -151,8 +172,20 @@
             updateScore();
             document.querySelectorAll('.coin').forEach(coin => coin.style.display = '');
             gameOver = false;
+            updateGeekStats();
         };
     }
+
+    // Geek console toggle and pause
+    document.getElementById('toggle-geek').onclick = () => {
+        const geek = document.getElementById('geek-console');
+        geek.style.display = geek.style.display === 'none' ? 'block' : 'none';
+        updateGeekStats();
+    };
+    document.getElementById('pauseBtn').onclick = () => {
+        paused = !paused;
+        document.getElementById('pauseBtn').textContent = paused ? 'Resume Game' : 'Pause Game';
+    };
     </script>
 <!-- ...existing code... -->
 
