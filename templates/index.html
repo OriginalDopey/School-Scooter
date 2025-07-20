@@ -236,7 +236,12 @@
     document.getElementById('toggle-geek').onclick = () => {
         const geek = document.getElementById('geek-console');
         geek.style.display = geek.style.display === 'none' ? 'block' : 'none';
-        updateGeekStats();
+        // Force stat update when panel is shown
+        if (geek.style.display === 'block') {
+            document.getElementById('geek-speed').textContent = step;
+            document.getElementById('geek-score').textContent = score;
+            document.getElementById('geek-collisions').textContent = collisions;
+        }
     };
     document.getElementById('pauseBtn').onclick = () => {
         paused = !paused;
