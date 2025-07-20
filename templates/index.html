@@ -169,6 +169,7 @@
         if (geekSpeed) geekSpeed.textContent = step;
         if (geekScore) geekScore.textContent = score;
         if (geekCollisions) geekCollisions.textContent = collisions;
+        // Always update main display score as well
         const mainScore = document.getElementById('score');
         if (mainScore) mainScore.textContent = score;
     }
