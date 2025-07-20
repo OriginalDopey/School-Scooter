@@ -93,7 +93,10 @@
     }
 
     setInterval(function() {
-        if (!gameOver && !paused) { moveElements(); }
+        if (!gameOver && !paused) {
+            moveElements();
+            checkCoinCollision();
+        }
     }, 30);
     // Tutorial overlay logic
     document.getElementById('startBtn').onclick = () => {
