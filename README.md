@@ -101,6 +101,19 @@ We’ll consider Node.js or Firebase later if online features are added.
 > - Next: Touchscreen support, polish, and stretch goals
 
 > Total Estimate: **~7–9 weeks**, working a few hours a week
+Progress:
+
+Phases 1–5 completed in one evening session (July 19–20, 2025)
+Game now features endless runner mechanics, live scoring, dynamic obstacles/coins, cutscene, and a geek panel
+Next: Touchscreen support, polish, and stretch goals
+Total Estimate: ~7–9 weeks, working a few hours a week
+
+Session 2 (July 19–20, 2025):
+- All MVP phases completed in one evening session
+- Features implemented: endless runner mechanics, live scoring, dynamic obstacles/coins, cutscene, geek panel
+- Commits tracked for this session
+
+Track future sessions and compare actual time to estimates here.
 
 ---
 
