@@ -20,16 +20,16 @@ Any tech requirements, libraries, or challenges?
 
 ## Example
 
-### Power-Up: Speed Burst
+### Money Farming
 
 **Description:**  
-Temporary boost that makes the scooter go faster for 3 seconds.
+As you gather money, you can upgrade your characters
 
 **Gameplay Impact:**  
-Adds excitement and strategy for dodging obstacles.
+AUpgraded caracters have special features like earning money faster through a multiplier
 
 **Technical Notes:**  
-Needs timer logic and animation.
+None yet
 
 **Status:**  
 Proposed

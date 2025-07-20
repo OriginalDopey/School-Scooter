@@ -27,4 +27,15 @@
     display: block;
     text-align: center;
 }
+
+/* Obstacle styles */
+.obstacle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #d32f2f;
+    border: 2px solid #b71c1c;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 /* This file is intentionally left blank. */
