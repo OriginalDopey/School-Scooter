@@ -82,19 +82,24 @@ We’ll consider Node.js or Firebase later if online features are added.
 
 ---
 
-## 📅 MVP Dev Plan
 
-| Phase | Feature                                  | Est. Time (Part-Time) |
-|-------|-------------------------------------------|------------------------|
-| 1     | Hallway map + scrolling layout             | 1 week                 |
-| 2     | Scooter movement + obstacle collisions     | 1 week                 |
-| 3     | Points system + teacher chase cutscene     | 1 week                 |
-| 4     | “Stuff for Geeks” console (v1)             | 1–2 weeks              |
-| 5     | Tutorial level + difficulty scaling        | 1 week                 |
-| 6     | Touchscreen support + device testing       | 1 week                 |
-| 7     | Polish: SFX, animations, smooth transitions| 1–2 weeks              |
+## 📅 MVP Dev Plan & Progress Tracker
 
-> Total: **~7–9 weeks**, working a few hours a week
+| Phase | Feature                                  | Est. Time (Part-Time) | Actual Time | Status |
+|-------|-------------------------------------------|-----------------------|-------------|--------|
+| 1     | Hallway map + scrolling layout             | 1 week                | 1 session   | ✅ Complete |
+| 2     | Scooter movement + obstacle collisions     | 1 week                | 1 session   | ✅ Complete |
+| 3     | Points system + teacher chase cutscene     | 1 week                |             | ⬜ Pending |
+| 4     | “Stuff for Geeks” console (v1)             | 1–2 weeks             |             | ⬜ Pending |
+| 5     | Tutorial level + difficulty scaling        | 1 week                |             | ⬜ Pending |
+| 6     | Touchscreen support + device testing       | 1 week                |             | ⬜ Pending |
+| 7     | Polish: SFX, animations, smooth transitions| 1–2 weeks             |             | ⬜ Pending |
+
+> **Progress:**
+> - First two phases completed in one evening session (July 19–20, 2025)
+> - Track future sessions and compare actual time to estimates here
+
+> Total Estimate: **~7–9 weeks**, working a few hours a week
 
 ---
 
