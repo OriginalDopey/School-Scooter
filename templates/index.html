@@ -118,21 +118,24 @@
     function checkCoinCollision() {
         const playerRect = getRect(player);
         document.querySelectorAll('.coin').forEach(coin => {
-            const playerRect = player.getBoundingClientRect();
-            const coinRect = coin.getBoundingClientRect();
-            if (
-                playerRect.left < coinRect.right &&
-                playerRect.right > coinRect.left &&
-                playerRect.top < coinRect.bottom &&
-                playerRect.bottom > coinRect.top
-            ) {
-                if (coin.parentNode) coin.parentNode.removeChild(coin);
-                score++;
-                step += 2;
-                speed += 0.2;
-                updateScore();
-                updateGeekStats();
-                console.log('Coin collected! Score:', score);
+            if (!coin.classList.contains('collected')) {
+                const playerRect = player.getBoundingClientRect();
+                const coinRect = coin.getBoundingClientRect();
+                if (
+                    playerRect.left < coinRect.right &&
+                    playerRect.right > coinRect.left &&
+                    playerRect.top < coinRect.bottom &&
+                    playerRect.bottom > coinRect.top
+                ) {
+                    coin.classList.add('collected');
+                    if (coin.parentNode) coin.parentNode.removeChild(coin);
+                    score++;
+                    step += 2;
+                    speed += 0.2;
+                    updateScore();
+                    updateGeekStats();
+                    console.log('Coin collected! Score:', score);
+                }
             }
         });
     }
