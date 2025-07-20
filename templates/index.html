@@ -163,9 +163,13 @@
     }
 
     function updateGeekStats() {
-        document.getElementById('geek-speed').textContent = step;
-        document.getElementById('geek-score').textContent = score;
-        document.getElementById('geek-collisions').textContent = collisions;
+        // Always update geek panel values, even if hidden
+        const geekSpeed = document.getElementById('geek-speed');
+        const geekScore = document.getElementById('geek-score');
+        const geekCollisions = document.getElementById('geek-collisions');
+        if (geekSpeed) geekSpeed.textContent = step;
+        if (geekScore) geekScore.textContent = score;
+        if (geekCollisions) geekCollisions.textContent = collisions;
         document.getElementById('score').textContent = score;
     }
 
