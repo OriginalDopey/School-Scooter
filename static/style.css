@@ -1,1 +1,30 @@
+#hallway {
+    position: relative;
+    width: 440px;
+    height: 280px;
+    margin: 0 auto;
+    background: repeating-linear-gradient(90deg, #4a90e2 0 60%, #f5a623 60% 100%);
+    border: 2px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+}
+#player {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Add a scooter emoji for fun */
+#player::after {
+    content: '🛴';
+    font-size: 2em;
+    display: block;
+    text-align: center;
+}
 /* This file is intentionally left blank. */

@@ -9,6 +9,41 @@
 <body>
     <header>
         <h1>Welcome to School Scooter!</h1>
+    <h1>🛴 School Scooter</h1>
+    <div id="game-container">
+        <!-- Hallway map -->
+        <div id="hallway">
+            <!-- Player character -->
+            <div id="player" style="left: 40px; top: 120px;"></div>
+        </div>
+    </div>
+    <div id="geek-console">
+        <!-- Stuff for Geeks console placeholder -->
+    </div>
+    <!-- PyScript Python code for MVP: player movement -->
+    <py-script>
+# School Scooter MVP: Player Movement
+# This code moves the player div left/right/up/down with arrow keys
+from js import document
+
+player = document.getElementById('player')
+pos = {'x': 40, 'y': 120}
+
+def move_player(event):
+    step = 20
+    if event.key == 'ArrowLeft':
+        pos['x'] = max(0, pos['x'] - step)
+    elif event.key == 'ArrowRight':
+        pos['x'] = min(400, pos['x'] + step)
+    elif event.key == 'ArrowUp':
+        pos['y'] = max(0, pos['y'] - step)
+    elif event.key == 'ArrowDown':
+        pos['y'] = min(240, pos['y'] + step)
+    player.style.left = f"{pos['x']}px"
+    player.style.top = f"{pos['y']}px"
+
+document.addEventListener('keydown', move_player)
+    </py-script>
     </header>
     <main>
         <p>Get ready to ride and have fun!</p>
