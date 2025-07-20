@@ -49,6 +49,49 @@
         <strong>Score:</strong> <span id="score">0</span>
     </div>
     <script>
+    // Continuous/dynamic obstacle and coin generation
+    const hallway = document.getElementById('hallway');
+    let speed = 2;
+    function spawnElement(type) {
+        const el = document.createElement('div');
+        el.className = type;
+        el.style.position = 'absolute';
+        el.style.left = Math.floor(Math.random() * 400) + 'px';
+        el.style.top = '-40px';
+        hallway.appendChild(el);
+    }
+
+    // Dynamic spawn rate and difficulty scaling
+    let spawnInterval = 1000;
+    let spawnTimer;
+    function startSpawning() {
+        if (spawnTimer) clearInterval(spawnTimer);
+        spawnTimer = setInterval(function() {
+            if (!gameOver && !paused) {
+                // Increase chance of obstacles as score increases
+                let obstacleChance = Math.min(0.6 + score * 0.01, 0.9);
+                let coinChance = Math.max(0.5 - score * 0.005, 0.2);
+                if (Math.random() < obstacleChance) { spawnElement('obstacle'); }
+                if (Math.random() < coinChance) { spawnElement('coin'); }
+            }
+        }, spawnInterval);
+    }
+    startSpawning();
+
+    // Move obstacles and coins downward
+    function moveElements() {
+        document.querySelectorAll('.obstacle, .coin').forEach(function(el) {
+            let top = parseInt(el.style.top);
+            top += speed;
+            el.style.top = top + 'px';
+            // Remove if out of hallway
+            if (top > 280) { el.remove(); }
+        });
+    }
+
+    setInterval(function() {
+        if (!gameOver && !paused) { moveElements(); }
+    }, 30);
     // Tutorial overlay logic
     document.getElementById('startBtn').onclick = () => {
         document.getElementById('tutorial-overlay').style.display = 'none';
