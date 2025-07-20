@@ -1,3 +1,8 @@
+# Project Status: Archived
+
+This School Scooter webapp (Flask/JS) project is now **archived**. Development will continue in a new Unity project called **School Scooter 3D** for true 3D gameplay and advanced features.
+
+See future commits and progress in the new Unity repository.
 # 🛴 School Scooter
 
 A **web-based** endless runner game where a student zips through school hallways on a scooter — dodging desks, avoiding crowds, collecting cash, and occasionally getting caught by a teacher. Designed to teach a 12-year-old the basics of **Python development**, game logic, and how code runs behind the scenes — all inside the browser.
